@@ -26,9 +26,10 @@ const Operation = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionType.LOGIN:
-            return extend(state, {login: action.payload});
+            return extend(state, { login: action.payload });
+        default:
+            return state;
     }
-    return state;
 };
 
-export {initialState, ActionType, ActionCreator, Operation, reducer};
+export { initialState, ActionType, ActionCreator, Operation, reducer };
