@@ -1,8 +1,7 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { AppRoute } from '../../const';
-import history from '../../history';
 import { Operation } from '../../reducer.js';
 
 
@@ -26,6 +25,7 @@ class HomePage extends React.Component {
     }
 
     handleSignInChange = (evt) => {
+        evt.preventDefault();
         const { onUserAuthorization } = this.props;
         this.setState({
             isSignIn: true
@@ -38,7 +38,7 @@ class HomePage extends React.Component {
         
 
         if (isSignIn) {
-            history.push(AppRoute.PROFILE);
+            return <Redirect to={AppRoute.PROFILE} />;
         }
 
         return (
