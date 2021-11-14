@@ -3,11 +3,17 @@ const AppRoute = {
   PROFILE: `/profile`,
 };
 
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
 const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
 export {
   AppRoute,
-  extend
+  AuthorizationStatus,
+  extend,
 };  
