@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import { getLogin, getLoadStatus } from '../../selectors';
 import withLoad from '../hocs/withLoad';
 
-const Profile = ({ login }) => {
+interface Props {
+    login: string,
+    loadStatus?: boolean
+};
+
+const Profile = ({ login }: Props) => {
     return (
         <h1>{login}</h1>
     );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: Props) => ({
     login: getLogin(state),
     loadStatus: getLoadStatus(state),
 });

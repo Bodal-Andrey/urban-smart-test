@@ -2,30 +2,39 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { Operation } from '../../reducer.js';
+import { Operation } from '../../reducer';
 import history from '../../history';
 import { getAuthStatus } from '../../selectors';
 
+interface Props {
+    onUserAuthorization: (login: string) => void,
+    isSignIn: string
+};
 
-class HomePage extends React.Component {
+interface State {
+    login: string,
+    password: string
+};
+
+class HomePage extends React.Component<Props, State> {
     state = {
         login: '',
         password: '',
     };
 
-    handleLoginChange = (evt) => {
+    handleLoginChange = (evt: { target: HTMLInputElement }) => {
         this.setState({
             login: evt.target.value,
         });
     }
 
-    handlePasswordChange = (evt) => {
+    handlePasswordChange = (evt: { target: HTMLInputElement }) => {
         this.setState({
             password: evt.target.value,
         });
     }
 
-    handleSignInChange = (evt) => {
+    handleSignInChange = (evt: { preventDefault: () => void; }) => {
         evt.preventDefault();
         const { onUserAuthorization } = this.props;
         history.push(AppRoute.PROFILE);
@@ -69,12 +78,12 @@ class HomePage extends React.Component {
     }
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: string) => ({
     isSignIn: getAuthStatus(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    onUserAuthorization(data) {
+const mapDispatchToProps = (dispatch: any) => ({
+    onUserAuthorization(data: string) {
         dispatch(Operation.userLogin(data));
     }
 });
